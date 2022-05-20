@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+
 class User(models.Model):
     nickname = models.CharField(max_length=20)
     creation_date = models.DateTimeField()
