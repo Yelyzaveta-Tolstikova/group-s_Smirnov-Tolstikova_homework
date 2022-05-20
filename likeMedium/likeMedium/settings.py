@@ -14,7 +14,8 @@ from pathlib import Path
 from environ import Env
 
 env = Env(
-    DEBUG = (bool, False)
+    DEBUG=(bool, False),
+    USE_TZ=(bool, True),
 )
 
 env.read_env()
@@ -32,8 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=['localhost'])
 
 # Application definition
 
@@ -82,12 +82,7 @@ WSGI_APPLICATION = 'likeMedium.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',      
-        'NAME': 'blog',
-        'USER': 'blog',
-        'PASSWORD': env('SECRET_KEY'),
-    }
+    'default': env.db(),
 }
 
 
