@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 from common.models.BaseModel import BaseModel
 from django.contrib.auth.models import PermissionMixin, AbstractBaseUser
 
